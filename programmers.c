@@ -5,8 +5,8 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-// board_rows´Â 2Â÷¿ø ¹è¿­ boardÀÇ Çà ±æÀÌ, board_cols´Â 2Â÷¿ø ¹è¿­ boardÀÇ ¿­ ±æÀÌÀÔ´Ï´Ù.
-int solution(int** board, size_t board_rows, size_t board_cols) {
+// board_rowsï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ boardï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, board_colsï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ boardï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
+int solution1(int** board, size_t board_rows, size_t board_cols) {
     int answer = 0;
     int i, k;
     for (i = 0; i < board_rows; i++) {
@@ -33,4 +33,21 @@ int solution(int** board, size_t board_rows, size_t board_cols) {
         }
     }
     return answer;
+}
+
+/* https://school.programmers.co.kr/learn/courses/30/lessons/120875 */
+
+// dots_rowsëŠ” 2ì°¨ì› ë°°ì—´ dotsì˜ í–‰ ê¸¸ì´, dots_colsëŠ” 2ì°¨ì› ë°°ì—´ dotsì˜ ì—´ ê¸¸ì´ìž…ë‹ˆë‹¤.
+int solution2(int** dots, size_t dots_rows, size_t dots_cols) {
+    int i,k, cnt=0;
+    double d[6];
+    for(i=0;i<dots_rows-1;i++){
+        for(k=i+1;k<dots_rows;k++){
+            d[cnt++]=((double)dots[i][1]-dots[k][1])/((double)dots[i][0]-dots[k][0]);
+        }
+    }
+    if(d[0]==d[5])  return 1;
+    if(d[1]==d[4])  return 1;
+    if(d[2]==d[3])  return 1;
+    return 0;
 }
